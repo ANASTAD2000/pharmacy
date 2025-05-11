@@ -2,10 +2,9 @@ package com.java.pharmacie.controllers;
 
 import com.java.pharmacie.entities.product;
 import com.java.pharmacie.repository.productRepository;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class productController {
@@ -19,4 +18,21 @@ public class productController {
     public  product saveProduct(@RequestBody product product){
         return repository.save(product);
     }
+    @GetMapping("/products")
+    public List<product> getproducts(){
+        return repository.findAll();
+    }
+    @DeleteMapping("/product/{id}")
+    public void deleteProduct(@PathVariable long id){
+        repository.deleteById(id);
+    }
+
+    @PutMapping("/product")
+    public product updateProduct(@RequestBody product product){
+        return repository.save(product);
+    }
+
+
+
+
 }
